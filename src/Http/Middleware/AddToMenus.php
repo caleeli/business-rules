@@ -14,7 +14,8 @@ class AddToMenus
         // Add a menu option to the top to point to our page
 
         $menu = Menu::get('topnav');
-        $menu->add(__('Skeleton'), ['route' => 'package.skeleton.tab.index']);
+        $menu->add(__('Business Rules'), ['route' => 'business.rules.tab.index']);
+        $menu->add(__('Reports'), ['route' => 'reports.tab.index']);
 
         // Add a option in the admin menu to point to our page
         $menu = Menu::get('sidebar_admin')->first();
