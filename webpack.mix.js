@@ -15,6 +15,11 @@ folder configured for publishing by default.
  */
 
 mix.setPublicPath('public')
-    .js('resources/assets/js/package.js', 'js')
-    .sass('resources/assets/sass/package.scss', 'css')
-    .version();
+  .webpackConfig({
+    resolve: {
+      symlinks: false,
+    }
+  })
+  .js('resources/assets/js/package.js', 'js')
+  .sass('resources/assets/sass/package.scss', 'css')
+  .version();
