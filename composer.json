@@ -1,5 +1,5 @@
 {
-    "name": "processmaker/package-skeleton",
+    "name": "processmaker/business-rules",
     "friendly_name": "Package Skeleton",
     "description": "Package skeleton to start a develop in ProcessMaker 4",
     "version": "0.0.1",

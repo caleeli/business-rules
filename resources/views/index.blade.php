@@ -4,10 +4,10 @@
     @include('layouts.sidebar', ['sidebar'=> Menu::get('sidebar_admin')])
 @endsection
 @section('css')
-    <link rel="stylesheet" href="{{mix('/css/package.css', 'vendor/processmaker/packages/package-skeleton')}}">
+    <link rel="stylesheet" href="{{mix('/css/package.css', 'vendor/processmaker/packages/business-rules')}}">
 @endsection
 @section('content')
-    <div class="container page-content" id="app-package-skeleton">
+    <div class="container page-content" id="app-business-rules">
         <p class="lead">
         <h1>{{__('Samples')}}</h1>
         <div class="row">
@@ -55,6 +55,6 @@
         </b-modal>
     </div>
 @section('js')
-<script src="{{mix('/js/package.js', 'vendor/processmaker/packages/package-skeleton')}}"></script>
+<script src="{{mix('/js/package.js', 'vendor/processmaker/packages/business-rules')}}"></script>
 @endsection
 @endsection

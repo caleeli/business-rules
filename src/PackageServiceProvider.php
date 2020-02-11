@@ -50,11 +50,11 @@ class PackageServiceProvider extends ServiceProvider
             Route::pushMiddlewareToGroup('web', AddToMenus::class);
         }
 
-        $this->loadViewsFrom(__DIR__ . '/../resources/views/', 'package-skeleton');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views/', 'business-rules');
 
         $this->publishes([
-            __DIR__.'/../public' => public_path('vendor/processmaker/packages/package-skeleton'),
-        ], 'package-skeleton');
+            __DIR__.'/../public' => public_path('vendor/processmaker/packages/business-rules'),
+        ], 'business-rules');
 
         $this->app['events']->listen(PackageEvent::class, PackageListener::class);
 

@@ -12,7 +12,7 @@ use URL;
 class PackageSkeletonController extends Controller
 {
     public function index(){
-        return view('package-skeleton::index');
+        return view('business-rules::index');
     }
 
     public function fetch(Request $request){

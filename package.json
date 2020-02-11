@@ -1,10 +1,10 @@
 {
-  "name": "package-skeleton",
+  "name": "business-rules",
   "version": "0.0.1",
   "description": "Package skeleton to start a develop in ProcessMaker 4",
   "author": "DevOps <devops@processmaker.com>",
   "license": "ISC",
-  "homepage": "https://github.com/ProcessMaker/package-skeleton",
+  "homepage": "https://github.com/ProcessMaker/business-rules",
   "scripts": {
     "dev": "npm run development",
     "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
