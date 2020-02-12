@@ -93,13 +93,13 @@
           case "remove-item":
             ProcessMaker.confirmModal(
               "Caution!",
-              "Are you sure to inactive the Business Rule '" + data.name + "'?",
+              "Are you sure to inactive the Business Rule '" + data.variable + "'?",
               "",
               () => {
                 ProcessMaker.apiClient
                   .delete("business_rules/" + data.id)
                   .then(response => {
-                    ProcessMaker.alert("business Rule " + data.name + " has been deleted", "warning");
+                    ProcessMaker.alert("business Rule " + data.variable + " has been deleted", "warning");
                     this.$emit("reload");
                   });
               }

@@ -10,7 +10,7 @@ new Vue({
   el: "#app-business-rules",
   data: {
     filter: "",
-    sample: {
+    formData: {
       id: "",
       variable: "",
       condition: "",
@@ -26,27 +26,27 @@ new Vue({
   components: {SampleListing},
   methods: {
     reload() {
-      this.clear();
       this.$refs.listing.dataManager([{
         field: "updated_at",
         direction: "desc"
       }]);
+      this.clearForm();
     },
     edit(data) {
-      this.sample.variable = data.variable;
-      this.sample.condition = data.condition;
-      this.sample.status = data.status;
-      this.sample.id = data.id;
+      this.formData.variable = data.variable;
+      this.formData.condition = data.condition;
+      this.formData.status = data.status;
+      this.formData.id = data.id;
       this.action = "Edit";
       this.$refs.modal.show();
     },
     validateForm() {
-      if (this.sample.variable === "" || this.sample.variable === null) {
+      if (this.formData.variable === "" || this.formData.variable === null) {
         this.submitted = false;
         this.addError.variable = ["The variable field is required"];
         return false;
       }
-      if (this.sample.condition === "" || this.sample.condition === null) {
+      if (this.formData.condition === "" || this.formData.condition === null) {
         this.submitted = false;
         this.addError.condition = ["The condition field is required"];
         return false;
@@ -59,13 +59,13 @@ new Vue({
       if (this.validateForm()) {
         this.addError.name = null;
         if (this.action === "Add") {
-          ProcessMaker.apiClient.post("business_rules", this.sample)
+          ProcessMaker.apiClient.post("business_rules", this.formData)
             .then((response) => {
               ProcessMaker.alert("Successfully added ", "success");
-              this.reload();
+              this.reload()
             })
             .catch((error) => {
-              if (error.response.status === 422) {
+              if (error.response && error.response.status === 422) {
                 this.addError = error.response.data.errors;
               }
             })
@@ -74,16 +74,13 @@ new Vue({
               this.$refs.modal.hide();
             });
         } else {
-          ProcessMaker.apiClient.patch(`business_rules/${this.sample.id}`, {
-            name: this.sample.name,
-            status: this.sample.status
-          })
+          ProcessMaker.apiClient.patch(`business_rules/${this.formData.id}`, this.formData)
             .then((response) => {
               ProcessMaker.alert("Successfully updated ", "success");
-              this.reload();
+              this.reload()
             })
             .catch((error) => {
-              if (error.response.status === 422) {
+              if (error.response && error.response.status === 422) {
                 this.addError = error.response.data.errors;
               }
             })
@@ -99,9 +96,9 @@ new Vue({
       this.action = "Add";
       this.id = "";
       this.addError.name = null;
-      this.sample.variable = "";
-      this.sample.condition = "";
-      this.sample.status = "ENABLED";
+      this.formData.variable = "";
+      this.formData.condition = "";
+      this.formData.status = "ENABLED";
     }
   }
 });
