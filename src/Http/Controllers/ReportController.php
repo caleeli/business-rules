@@ -1,6 +1,6 @@
 <?php
 
-namespace ProcessMaker\Package\PackageSkeleton\Http\Controllers;
+namespace ProcessMaker\Package\BusinessRules\Http\Controllers;
 
 use ProcessMaker\Http\Controllers\Controller;
 use ProcessMaker\Http\Resources\ApiCollection;

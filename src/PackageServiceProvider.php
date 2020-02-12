@@ -1,17 +1,20 @@
 <?php
-namespace ProcessMaker\Package\PackageSkeleton;
+namespace ProcessMaker\Package\BusinessRules;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use ProcessMaker\Package\Packages\Events\PackageEvent;
-use ProcessMaker\Package\PackageSkeleton\Http\Middleware\AddToMenus;
-use ProcessMaker\Package\PackageSkeleton\Listeners\PackageListener;
+use ProcessMaker\Package\BusinessRules\Http\Middleware\AddToMenus;
+use ProcessMaker\Package\BusinessRules\Listeners\PackageListener;
+use ProcessMaker\Package\BusinessRules\Seeds\BusinessRulePermissionSeeder;
+use ProcessMaker\Traits\PluginServiceProviderTrait;
 
 class PackageServiceProvider extends ServiceProvider
 {
+    use PluginServiceProviderTrait;
 
     // Assign the default namespace for our controllers
-    protected $namespace = '\ProcessMaker\Package\PackageSkeleton\Http\Controllers';
+    protected $namespace = '\ProcessMaker\Package\BusinessRules\Http\Controllers';
 
     /**
      * If your plugin will provide any services, you can register them here.
@@ -32,31 +35,39 @@ class PackageServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if ($this->app->runningInConsole()) {
-            require(__DIR__ . '/../routes/console.php');
-        } else {
-            // Assigning to the web middleware will ensure all other middleware assigned to 'web'
-            // will execute. If you wish to extend the user interface, you'll use the web middleware
-            Route::middleware('web')
-                ->namespace($this->namespace)
-                ->group(__DIR__ . '/../routes/web.php');
+        $this->commands([
+            Console\Commands\Install::class,
+            Console\Commands\Uninstall::class,
+        ]);
 
+        // Assigning to the web middleware will ensure all other middleware assigned to 'web'
+        // will execute. If you wish to extend the user interface, you'll use the web middleware
+        Route::middleware('web')
+            ->namespace($this->namespace)
+            ->group(__DIR__ . '/../routes/web.php');
 
-            Route::middleware('api')
-                ->namespace($this->namespace)
-                ->prefix('api/1.0')
-                ->group(__DIR__ . '/../routes/api.php');
+        //route api
+        Route::middleware('api')
+            ->namespace($this->namespace)
+            ->prefix('api/1.0')
+            ->group(__DIR__ . '/../routes/api.php');
 
-            Route::pushMiddlewareToGroup('web', AddToMenus::class);
-        }
+        //menus
+        Route::pushMiddlewareToGroup('web', AddToMenus::class);
 
+        //load migrations
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+
+        //Register a seeder that will be executed in php artisan db:seed
+        $this->registerSeeder(BusinessRulePermissionSeeder::class);
+
+        //load views
         $this->loadViewsFrom(__DIR__ . '/../resources/views/', 'business-rules');
 
+        //publish assets
         $this->publishes([
             __DIR__.'/../public' => public_path('vendor/processmaker/packages/business-rules'),
         ], 'business-rules');
-
-        $this->app['events']->listen(PackageEvent::class, PackageListener::class);
 
     }
 }

@@ -14,13 +14,13 @@
     },
     "autoload": {
         "psr-4": {
-            "ProcessMaker\\Package\\PackageSkeleton\\": "src"
+            "ProcessMaker\\Package\\BusinessRules\\": "src"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "ProcessMaker\\Package\\PackageSkeleton\\PackageServiceProvider"
+                "ProcessMaker\\Package\\BusinessRules\\PackageServiceProvider"
             ]
         }
     }
