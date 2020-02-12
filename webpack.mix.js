@@ -1,4 +1,4 @@
-const { mix } = require('laravel-mix');
+const mix = require('laravel-mix');
 
 /*
 Your Processmaker Plugin webpack utilizes laravel mix in order to easily compile
@@ -15,11 +15,7 @@ folder configured for publishing by default.
  */
 
 mix.setPublicPath('public')
-  .webpackConfig({
-    resolve: {
-      symlinks: false,
-    }
-  })
   .js('resources/assets/js/package.js', 'js')
   .sass('resources/assets/sass/package.scss', 'css')
+  .js('resources/assets/js/screen-builder-form-components.js', 'js')
   .version();
