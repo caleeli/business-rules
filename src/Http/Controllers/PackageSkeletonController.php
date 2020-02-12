@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use URL;
 
 
-class BusinessRuleController extends Controller
+class PackageSkeletonController extends Controller
 {
     public function index(){
         return view('business-rules::index');
