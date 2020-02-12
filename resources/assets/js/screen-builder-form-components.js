@@ -1,48 +1,39 @@
-import CustomPopup from './components/CustomPopup.vue';
+import CustomAlert from './components/CustomAlert.vue';
 
-Vue.component("CustomPopup", CustomPopup);
+Vue.component("CustomAlert", CustomAlert);
 
 window.ProcessMaker.EventBus.$on('screen-builder-init', (manager) => {
     const control = {
-        editorComponent: CustomPopup,
-        editorBinding: 'CustomPopup',
-        rendererComponent: CustomPopup,
-        rendererBinding: 'CustomPopup',
+        editorComponent: CustomAlert,
+        editorBinding: 'CustomAlert',
+        rendererComponent: CustomAlert,
+        rendererBinding: 'CustomAlert',
         control: {
-            label: "Custom Popup",
-            component: 'CustomPopup',
-            "editor-component": "CustomPopup",
+            label: "Custom Alert",
+            component: 'CustomAlert',
+            "editor-component": "CustomAlert",
             config: {
-                label: "Custom Popup",
+                label: "Custom Alert",
                 placeholder: "",
                 validation: '',
                 icon: 'far fa-comment-alt',
-                collectionConfig: {
-                    labelField: '',
-                    valueField: 'id',
-                    collectionId: null,
-                    query: '',
-                    options: [{
-                        value: 'new',
-                        content: 'New Option'
-                    }]
-                },
                 helper: null,
             },
-            inspector: [{
-                type: "FormInput",
-                field: "name",
-                config: {
-                    label: "Field Name",
-                    helper: "The data name for this field"
-                    }
-                },
+            inspector: [
                 {
                     type: "FormInput",
                     field: "label",
                     config: {
                         label: "Field Label",
                         helper: "The label describes the fields name"
+                    }
+                },
+                {
+                    type: "FormInput",
+                    field: "color",
+                    config: {
+                        label: "Color variable",
+                        helper: "The variable used to select the color of the control"
                     }
                 },
             ]
