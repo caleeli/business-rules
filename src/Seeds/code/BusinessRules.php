@@ -1,9 +1,9 @@
 <?php
 
-namespace ProcessMaker\Packages\Connectors\DataSources\Seeds\code;
+//namespace ProcessMaker\Packages\Connectors\DataSources\Seeds\code;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\ClientException;
+use Exception;
 use GuzzleHttp\Psr7\Request;
 
 class BusinessRules
@@ -13,16 +13,8 @@ class BusinessRules
         try {
             extract($data);
             $newData = eval($this->api('GET', '/businessrules', []));
-        } catch (ClientException $exception) {
-            $dataSource = @$this->getDataSource($config['dataSource']) ?: null;
-            $endpoint = @$dataSource['endpoints'][$config['endpoint']] ?: null;
-            echo sprintf(
-                "`%s` Error: %s resulted in a `%s` response`:\n",
-                $dataSource ? $dataSource['name'] : 'Invalid collection id',
-                $endpoint ? $endpoint['method'] . ' ' . $endpoint['url'] : 'Invalid endpoint',
-                $exception->getResponse()->getStatusCode()
-            );
-            echo $exception->getResponse()->getBody();
+        } catch (Exception $exception) {
+            echo $exception->getMessage();
             exit(1);
         }
         return $newData;
@@ -56,11 +48,6 @@ class BusinessRules
             'Content-Type' => 'application/json',
             'Accept' => 'application/json',
         ];
-    }
-
-    private function getDataSource($id)
-    {
-        return $this->api('GET', '/data_sources/' . $id);
     }
 }
 
