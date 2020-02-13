@@ -67,5 +67,8 @@ class PackageServiceProvider extends ServiceProvider
             __DIR__.'/../public' => public_path('vendor/processmaker/packages/business-rules'),
         ], 'business-rules');
 
+        //register a new assignment rule
+        $manager = app('workflow.manager');
+        $manager->registerAssignmentRule();
     }
 }
