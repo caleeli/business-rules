@@ -15,7 +15,7 @@ folder configured for publishing by default.
  */
 
 mix.setPublicPath('public')
-  .js('resources/assets/js/package.js', 'js')
-  .sass('resources/assets/sass/package.scss', 'css')
-  .js('resources/assets/js/screen-builder-form-components.js', 'js')
+  .js('resources/js/package.js', 'js')
+  .sass('resources/sass/package.scss', 'css')
+  .js('resources/js/screen-builder-form-components.js', 'js')
   .version();
