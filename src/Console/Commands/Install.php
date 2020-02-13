@@ -13,14 +13,14 @@ class Install extends Command
      *
      * @var string
      */
-    protected $signature = 'business-rules:install';
+    protected $signature = 'demo-package:install';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Install Business Rules Package';
+    protected $description = 'Install Demo Package';
 
     /**
      * Create a new command instance.
@@ -53,7 +53,7 @@ class Install extends Command
         $this->info('Update permissions');
         BusinessRulePermissionSeeder::update();
 
-        $this->info('Business Rules package has been installed');
+        $this->info('Demo package has been installed');
     }
 
     /**

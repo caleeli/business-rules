@@ -17,14 +17,6 @@ class AddToMenus
         $menu->add(__('Business Rules'), ['route' => 'business.rules.tab.index']);
         $menu->add(__('Reports'), ['route' => 'reports.tab.index']);
 
-        // Add a option in the admin menu to point to our page
-        $menu = Menu::get('sidebar_admin')->first();
-
-        // Add our menu item to the top nav
-        $menu->add(__('Skeleton'), [
-            'route' => 'package.skeleton.index',
-            'icon' => 'fa-puzzle-piece',
-        ]);
         return $next($request);
     }
 
