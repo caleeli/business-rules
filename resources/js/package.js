@@ -74,7 +74,7 @@ new Vue({
               this.$refs.modal.hide();
             });
         } else {
-          ProcessMaker.apiClient.patch(`business_rules/${this.formData.id}`, this.formData)
+          ProcessMaker.apiClient.put(`business_rules/${this.formData.id}`, this.formData)
             .then((response) => {
               ProcessMaker.alert("Successfully updated ", "success");
               this.reload()

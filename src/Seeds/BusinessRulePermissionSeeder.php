@@ -4,9 +4,12 @@ namespace ProcessMaker\Package\BusinessRules\Seeds;
 
 use Illuminate\Database\Seeder;
 use ProcessMaker\Models\Permission;
+use ProcessMaker\Models\Script;
 
 class BusinessRulePermissionSeeder extends Seeder
 {
+
+    const IMPLEMENTATION_ID = 'package-demo/package-demo-code';
     const group = 'Business Rules';
 
     /**
@@ -44,10 +47,39 @@ class BusinessRulePermissionSeeder extends Seeder
 
             ]);
         }
+
+        $this->updateScripts();
     }
 
+    private function getCode()
+    {
+        clearstatcache(false, __DIR__ . '/code/BusinessRules.php.php');
+        return file_get_contents(__DIR__ . '/code/BusinessRules.php');
+    }
+
+    public function updateScripts()
+    {
+        //Definition script
+        $definition = [
+            'title' => 'Evaluate rules',
+            'description' => 'Evaluate rules registered',
+            'language' => 'PHP',
+            'run_as_user_id' => Script::defaultRunAsUser()->id,
+            'code' => $this->getCode(),
+        ];
+        $exists = Script::where('key', self::IMPLEMENTATION_ID)->first();
+        if ($exists) {
+            $exists->fill($definition);
+            $exists->saveOrFail();
+        } else {
+            $script = factory(Script::class)->make($definition);
+            $script->saveOrFail();
+        }
+    }
+
+
     /**
-     * Update the permissions of Data Connector.
+     * Delete the permissions of Data Connector.
      */
     public function delete()
     {

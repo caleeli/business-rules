@@ -232,4 +232,17 @@ class BusinessRuleController extends Controller
         return response([], 204);
     }
 
+    public function evaluate(Request $request)
+    {
+        $data = BusinessRule::all();
+
+        $response = [];
+        foreach ($data as $item) {
+            $response[] = json_encode($item->variable) . ' => ' . $item->condition;
+        }
+        $response = "[" . implode(',' , $response) . "]";
+        return response([$response], 200);
+
+    }
+
 }

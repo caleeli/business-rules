@@ -13,4 +13,6 @@ Route::group(
     Route::put('business_rules/{business_rule}', 'Api\BusinessRuleController@update')->name('business-rules.update')->middleware('can:edit-business-rules');
     Route::delete('business_rules/{business_rule}', 'Api\BusinessRuleController@destroy')->name('business-rules.destroy')->middleware('can:edit-business-rules');
 
+    Route::get('businessrules', 'Api\BusinessRuleController@evaluate')->name('business-rules.evaluate');
+
 });
