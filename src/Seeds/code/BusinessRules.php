@@ -3,21 +3,14 @@
 //namespace ProcessMaker\Packages\Connectors\DataSources\Seeds\code;
 
 use GuzzleHttp\Client;
-use Exception;
 use GuzzleHttp\Psr7\Request;
 
 class BusinessRules
 {
     public function main($data)
     {
-        try {
-            extract($data);
-            $newData = eval($this->api('GET', '/businessrules', []));
-        } catch (Exception $exception) {
-            echo $exception->getMessage();
-            exit(1);
-        }
-        return $newData;
+        return ["a" => eval("return " . $this->api('GET', '/businessrules', [])[0] . ";")];
+
     }
 
     private function call($method, $url, $headers, $body)
