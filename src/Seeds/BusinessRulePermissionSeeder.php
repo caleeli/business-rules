@@ -59,9 +59,8 @@ class BusinessRulePermissionSeeder extends Seeder
 
     public function updateScripts()
     {
-        //Definition script send an email
+        //Definition script
         $definition = [
-            'key' => self::IMPLEMENTATION_ID,
             'title' => 'Evaluate rules',
             'description' => 'Evaluate rules registered',
             'language' => 'PHP',
