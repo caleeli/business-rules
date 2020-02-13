@@ -55010,8 +55010,8 @@ new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/davidcallizaya/Netbeans/demo-package/resources/js/package.js */"./resources/js/package.js");
-module.exports = __webpack_require__(/*! /Users/davidcallizaya/Netbeans/demo-package/resources/sass/package.scss */"./resources/sass/package.scss");
+__webpack_require__(/*! /opt/github/business-rules/resources/js/package.js */"./resources/js/package.js");
+module.exports = __webpack_require__(/*! /opt/github/business-rules/resources/sass/package.scss */"./resources/sass/package.scss");
 
 
 /***/ })

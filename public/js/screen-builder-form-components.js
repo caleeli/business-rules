@@ -17557,7 +17557,7 @@ window.ProcessMaker.EventBus.$on('screen-builder-init', function (manager) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/davidcallizaya/Netbeans/demo-package/resources/js/screen-builder-form-components.js */"./resources/js/screen-builder-form-components.js");
+module.exports = __webpack_require__(/*! /opt/github/business-rules/resources/js/screen-builder-form-components.js */"./resources/js/screen-builder-form-components.js");
 
 
 /***/ })
