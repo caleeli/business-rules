@@ -1,6 +1,11 @@
 import CustomAlert from './components/CustomAlert.vue';
 
 Vue.component("CustomAlert", CustomAlert);
+console.log("Hola Gary");
+
+function calcularAvg() {
+
+}
 
 window.ProcessMaker.EventBus.$on('screen-builder-init', (manager) => {
     const control = {

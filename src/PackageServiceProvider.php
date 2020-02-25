@@ -4,6 +4,7 @@ namespace ProcessMaker\Package\BusinessRules;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use ProcessMaker\Package\BusinessRules\Http\Middleware\AddToMenus;
+use ProcessMaker\Package\BusinessRules\Models\HierarchyAssignmentRule;
 use ProcessMaker\Package\BusinessRules\Seeds\BusinessRulePermissionSeeder;
 use ProcessMaker\Traits\PluginServiceProviderTrait;
 
@@ -13,6 +14,7 @@ class PackageServiceProvider extends ServiceProvider
 
     // Assign the default namespace for our controllers
     protected $namespace = '\ProcessMaker\Package\BusinessRules\Http\Controllers';
+    const version = "0.0.1";
 
     /**
      * If your plugin will provide any services, you can register them here.
@@ -67,8 +69,17 @@ class PackageServiceProvider extends ServiceProvider
             __DIR__.'/../public' => public_path('vendor/processmaker/packages/business-rules'),
         ], 'business-rules');
 
+        // Register a javascript library for the modeler
+        $this->registerModelerScript(
+            'js/modeler.js',
+            'vendor/processmaker/packages/business-rules'
+        );
+        
         //register a new assignment rule
-        $manager = app('workflow.manager');
-        $manager->registerAssignmentRule();
+        //$manager = app('workflow.manager');
+        //$manager->registerAssignmentRule(HierarchyAssignmentRule::class);
+
+        // Complete the connector boot
+        $this->completePluginBoot();
     }
 }

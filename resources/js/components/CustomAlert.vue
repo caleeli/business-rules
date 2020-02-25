@@ -1,5 +1,8 @@
 <template>
-  <div class="alert" :class="variant" role="alert">{{ label }}</div>
+  <div class="alert" :class="variant" role="alert">{{ label }}
+
+
+  </div>
 </template>
 
 <script>
